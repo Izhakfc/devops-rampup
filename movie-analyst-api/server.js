@@ -16,7 +16,7 @@ pool.query = util.promisify(pool.query)
 app.get('/movies', async function (req, res) {
   try {
     const rows = await pool.query(
-      'select m.title, m.release_year, m.score, r.name as reviewer, p.name as publication from movies m,' +
+      'select m.title, m.release, m.score, r.name as reviewer, p.name as publication from movies m,' +
       'reviewers r, publications p where r.publication=p.name and m.reviewer=r.name'
     )
     res.json(rows)
